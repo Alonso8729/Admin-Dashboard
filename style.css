@@ -1,30 +1,36 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto&display=swap');
 
 :root {
-    --bg-purple: #7e22ce;
-    --bg-grey: #e7e5e4;
+    --bg-purple: #9139de;
+    --bg-puprple-darker: #5f07ac;
+    --bg-grey: #dfdfdf;
+    --bg-grey2: #f4e8e8;
+    --bg-green: #2db860;
     --txt-username: #7b7470;
+    --shadow1: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+    --shadow2: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
 }
 
 * {
     list-style: none;
     padding: 0;
     margin: 0;
-    text-decoration: none;
-    box-sizing: inherit;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
     font-family: 'Open Sans', sans-serif;
+
 }
 
 body {
     overflow: hidden;
-
 }
 
 
 .container {
     display: grid;
     grid-template-columns: 1fr 5fr;
-    grid-template-rows: 1fr 4fr;
+    grid-template-rows: 1fr 6fr;
 }
 
 /*HEADER*/
@@ -32,7 +38,11 @@ body {
 .header {
     background-color: white;
     padding: 1.5rem 3rem;
+    box-shadow: var(--shadow1);
+    z-index: 3;
 }
+
+
 
 .top {
     display: flex;
@@ -55,6 +65,14 @@ body {
     font-size: 1.8rem;
 }
 
+button {
+    border: none;
+    appearance: none;
+    outline: none;
+    background: none;
+    cursor: pointer;
+}
+
 .search {
     display: flex;
     align-items: center;
@@ -71,6 +89,7 @@ body {
     margin-right: auto;
     border: none;
     transition: border-color 0.1s;
+
 }
 
 .search>input:hover,
@@ -146,9 +165,7 @@ span.user {
 }
 
 .bottom button:hover {
-    color: var(--bg-purple);
-    background-color: white;
-    border: 3px solid var(--bg-purple);
+    background-color: var(--bg-puprple-darker);
 }
 
 
@@ -181,7 +198,7 @@ span.user {
     margin-top: 3.5rem;
     font-weight: 300;
 }
- 
+
 a {
     list-style: none;
     text-decoration: none;
@@ -213,12 +230,133 @@ a {
 /*CONTENT*/
 .content {
     background-color: #e7e5e4;
+    display: grid;
+    padding: 2rem;
+    overflow: auto;
+    grid-template-columns: 3fr 1fr;
+    grid-template-rows: 1fr 2fr;
+    gap: 2rem;
+    grid-template-areas: 'projects announcements'
+        'projects trending';
+    max-height: 100%;
 }
 
-button {
-    border: none;
-    appearance: none;
-    outline: none;
-    background: none;
-    cursor: pointer;
+.card {
+    border-radius: 0.5rem;
+    box-shadow: var(--shadow2);
+}
+
+.projects h4 {
+    font-size: 1.2rem;
+}
+
+.card p {
+    color: var(--txt-username);
+}
+
+.content h3 {
+    margin-bottom: 0.8rem;
+}
+
+
+.projects {
+    grid-area: projects;
+
+}
+
+.projects .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-auto-rows: 300px;
+    gap: 2rem;
+}
+
+.projects .card {
+    background-color: white;
+    border-left: 10px solid var(--bg-green);
+    padding: 2rem;
+    display: grid;
+
+}
+
+.projects .icons {
+    font-size: 1.8rem;
+    display: flex;
+    justify-content: flex-end;
+    gap: 1.3rem;
+}
+
+.announcements {
+    grid-area: announcements;
+}
+
+.announcement {
+    width: 25ch;
+    padding: 1rem 0;
+}
+
+.announcement:first-child {
+    padding-top: 0;
+}
+
+.announcement+.announcement {
+    border-top: 1px solid var(--bg-grey2);
+}
+
+.announcements .card {
+    background-color: white;
+    padding: 2rem;
+}
+
+.announcement p {
+    overflow: hidden;
+    font-size: 0.8rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.trending {
+    grid-area: trending;
+}
+
+.trending .trend {
+    display: flex;
+    align-items: center;
+}
+
+.trend-1,
+.trend-2,
+.trend-3 {
+    padding-bottom: 1rem;
+}
+
+.trending p {
+    font-size: 0.9rem;
+}
+
+
+
+.trending .card {
+    background-color: white;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.trending-img {
+    height: 40px;
+    width: 40px;
+    margin-right: 0.8rem;
+}
+
+.trending .username {
+    font-weight: 500;
+    font-size: 1rem;
+
+}
+
+.trending .description {
+    color: var(--txt-username);
 }
